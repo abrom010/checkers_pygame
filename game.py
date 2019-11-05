@@ -6,8 +6,8 @@ from script import *
 #initializing the pygame window and game variables
 gameDisplay = pygame.display.set_mode((800, 800))
 pygame.display.set_caption('Checkers')
-red_translucent = pygame.image.load("red_translucent.png")
-black_translucent = pygame.image.load("black_translucent.png")
+red_translucent = pygame.image.load("assets/red_translucent.png")
+black_translucent = pygame.image.load("assets/black_translucent.png")
 clock = pygame.time.Clock()
 
 #main loop

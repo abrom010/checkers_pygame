@@ -1,9 +1,9 @@
 #Checkers game
 import pygame
 
-boardImage = pygame.image.load("board.png")
-red = pygame.image.load("red.png")
-black = pygame.image.load("black.png")
+boardImage = pygame.image.load("assets/board.png")
+red = pygame.image.load("assets/red.png")
+black = pygame.image.load("assets/black.png")
 
 coordinates =  (((0, 0), (100, 0), (200, 0), (300, 0), (400, 0), (500, 0), (600, 0), (700, 0)),
                 ((0, 100), (100, 100), (200, 100), (300, 100), (400, 100), (500, 100), (600, 100), (700, 100)),
