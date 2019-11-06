@@ -1,5 +1,6 @@
 import pygame
 import sys
+from ai import ai
 
 from script import *
 
@@ -11,8 +12,11 @@ black_translucent = pygame.image.load("assets/black_translucent.png")
 clock = pygame.time.Clock()
 
 #main loop
+game_over = False
 is_black = True
-player_piece_value = get_player_piece(is_black)
+ai1 = ai(is_black)
+print(get_piece(ai1.is_black))
+player_piece_value = get_piece(is_black)
 board = make_board(is_black)
 player_turn = True
 running = True
@@ -27,7 +31,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and not moving and player_turn:
+        if not player_turn and not game_over:
+            pygame.time.wait(600)
+            board = ai1.next_move(board)
+            draw_board(board, gameDisplay)
+            pygame.display.update()
+            player_turn = True
+
+        elif (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and not moving and player_turn:
             x,y = pygame.mouse.get_pos()
             indexes = where_clicked(board,x,y)
             if board[indexes[0]][indexes[1]]==1 and not is_black:
@@ -53,6 +64,7 @@ while running:
                     draw_board(board, gameDisplay)
                     pygame.display.update()
                     moving = False
+                    player_turn = False
             else:
                 if valid:
                     board[moving_indexes[0]][moving_indexes[1]]=place_holder
@@ -60,11 +72,12 @@ while running:
                     draw_board(board, gameDisplay)
                     pygame.display.update()
                     moving = False
+                    player_turn = False
                 else:
-                    moving = False
                     board[indexes[0]][indexes[1]]=place_holder
                     draw_board(board, gameDisplay)
                     pygame.display.update()
+                    moving = False
 
     if moving == True:
         x,y = pygame.mouse.get_pos()
