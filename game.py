@@ -15,7 +15,6 @@ clock = pygame.time.Clock()
 game_over = False
 is_black = True
 ai1 = ai(is_black)
-print(get_piece(ai1.is_black))
 player_piece_value = get_piece(is_black)
 board = make_board(is_black)
 player_turn = True

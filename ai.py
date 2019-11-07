@@ -1,4 +1,5 @@
 from script import get_piece
+from random import randint
 class ai:
     is_black = None
     board = None
@@ -12,70 +13,127 @@ class ai:
         piece_value = self.piece_value
 
         def attack_right():
-            for i in range(8):
-                for j in range(8):
-                    if i < 6 and j < 6:
-                        if self.board[i][j] == piece_value and\
-                        self.board[i+1][j+1] == get_piece(self.is_black) and\
-                        self.board[i+2][j+2] == 0:
-                            self.board[i+2][j+2] = piece_value
-                            self.board[i+1][j+1] = 0
-                            self.board[i][j] = 0
-                            return self.board
+            if randint(0,1)==0:
+                for i in range(8):
+                    for j in range(8):
+                        if i < 6 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i+1][j+1] == get_piece(self.is_black) and\
+                            self.board[i+2][j+2] == 0:
+                                self.board[i+2][j+2] = piece_value
+                                self.board[i+1][j+1] = 0
+                                self.board[i][j] = 0
+                                return self.board
+            else:
+                for i in reversed(range(8)):
+                    for j in reversed(range(8)):
+                        if i < 6 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i+1][j+1] == get_piece(self.is_black) and\
+                            self.board[i+2][j+2] == 0:
+                                self.board[i+2][j+2] = piece_value
+                                self.board[i+1][j+1] = 0
+                                self.board[i][j] = 0
+                                return self.board
+
             return None
 
         def attack_left():
-            for i in range(8):
-                for j in range(8):
-                    if i < 6 and j > 2:
-                        if self.board[i][j] == piece_value and\
-                        self.board[i+1][j-1] == get_piece(self.is_black) and\
-                        self.board[i+2][j-2] == 0:
-                            self.board[i+2][j-2] = piece_value
-                            self.board[i+1][j-1] = 0
-                            self.board[i][j] = 0
-                            return self.board
+            if randint(0,1)==0:
+                for i in range(8):
+                    for j in range(8):
+                        if i < 6 and j > 2:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i+1][j-1] == get_piece(self.is_black) and\
+                            self.board[i+2][j-2] == 0:
+                                self.board[i+2][j-2] = piece_value
+                                self.board[i+1][j-1] = 0
+                                self.board[i][j] = 0
+                                return self.board
+            else:
+                for i in reversed(range(8)):
+                    for j in reversed(range(8)):
+                        if i < 6 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i+1][j+1] == get_piece(self.is_black) and\
+                            self.board[i+2][j+2] == 0:
+                                self.board[i+2][j+2] = piece_value
+                                self.board[i+1][j+1] = 0
+                                self.board[i][j] = 0
+                                return self.board
             return None
 
         def move_right_defense():
-            for i in range(8):
-                for j in range(8):
-                    if i > 1 and j < 6:
-                        if self.board[i][j] == piece_value and\
-                        self.board[i-1][j+1] == 0 and\
-                        self.board[i-2][j+2] == piece_value:
-                            self.board[i-1][j+1] = piece_value
-                            self.board[i-2][j+2] = 0
-                            return self.board
+            if randint(0,1)==0:
+                for i in range(8):
+                    for j in range(8):
+                        if i > 1 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i-1][j+1] == 0 and\
+                            self.board[i-2][j+2] == piece_value:
+                                self.board[i-1][j+1] = piece_value
+                                self.board[i-2][j+2] = 0
+                                return self.board
+            else:
+                for i in reversed(range(8)):
+                    for j in reversed(range(8)):
+                        if i > 1 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i-1][j+1] == 0 and\
+                            self.board[i-2][j+2] == piece_value:
+                                self.board[i-1][j+1] = piece_value
+                                self.board[i-2][j+2] = 0
+                                return self.board
             return None
 
         def move_left_defense():
-            for i in range(8):
-                for j in range(8):
-                    if i < 6 and j < 6:
-                        if self.board[i][j] == piece_value and\
-                        self.board[i-1][j-1] == 0 and\
-                        self.board[i-2][j-2] == piece_value:
-                            self.board[i-1][j-1] = piece_value
-                            self.board[i-2][j-2] = 0
-                            return self.board
+            if randint(0,1)==0:
+                for i in range(8):
+                    for j in range(8):
+                        if i < 6 and j < 6 and j>1:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i-1][j-1] == 0 and\
+                            self.board[i-2][j-2] == piece_value:
+                                self.board[i-1][j-1] = piece_value
+                                self.board[i-2][j-2] = 0
+                                return self.board
+            else:
+                for i in reversed(range(8)):
+                    for j in reversed(range(8)):
+                        if i < 6 and j < 6 and j>1:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i-1][j-1] == 0 and\
+                            self.board[i-2][j-2] == piece_value:
+                                self.board[i-1][j-1] = piece_value
+                                self.board[i-2][j-2] = 0
+                                return self.board
             return None
 
         def move_right_offense():
-            for i in range(8):
-                for j in range(8):
-                    if i < 7 and j < 7:
-                        if self.board[i][j] == piece_value and\
-                        self.board[i+1][j+1] == 0:
-                            self.board[i+1][j+1] = piece_value
-                            self.board[i][j]=0
-                            return self.board
+            if randint(0,1)==0:
+                for i in range(8):
+                    for j in range(8):
+                        if i < 7 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i+1][j+1] == 0:
+                                self.board[i+1][j+1] = piece_value
+                                self.board[i][j]=0
+                                return self.board
+            else:
+                for i in reversed(range(8)):
+                    for j in reversed(range(8)):
+                        if i < 7 and j < 6:
+                            if self.board[i][j] == piece_value and\
+                            self.board[i+1][j+1] == 0:
+                                self.board[i+1][j+1] = piece_value
+                                self.board[i][j]=0
+                                return self.board
             return None
 
         def move_left_offense():
             for i in range(8):
                 for j in range(8):
-                    if i < 7 and j > 0:
+                    if i < 7 and j > 2:
                         if self.board[i][j] == piece_value and\
                         self.board[i+1][j-1] == 0:
                             self.board[i+1][j-1] = piece_value
@@ -83,9 +141,7 @@ class ai:
                             return self.board
             return None
 
-        from random import randint
-        num = randint(0,1)
-        if num == 0:
+        if randint(0,1) == 0:
             board = attack_left()
             if board != None: return board
             board = attack_right()
@@ -115,4 +171,4 @@ class ai:
         return self.board
 
 if __name__ == "__main__":
-    pass
+    for i in range(8): print(i)
