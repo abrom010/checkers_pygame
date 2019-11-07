@@ -5,7 +5,7 @@ from ai import ai
 from script import *
 
 #initializing the pygame window and game variables
-gameDisplay = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption('Checkers')
 red_translucent = pygame.image.load("assets/red_translucent.png")
 black_translucent = pygame.image.load("assets/black_translucent.png")
@@ -23,7 +23,7 @@ moving = False
 indexes = []
 moving_indexes = []
 place_holder = 0
-draw_board(board, gameDisplay)
+draw_board(board, screen)
 pygame.display.flip()
 while running:
     for event in pygame.event.get():
@@ -33,7 +33,7 @@ while running:
         if not player_turn and not game_over:
             pygame.time.wait(600)
             board = ai1.next_move(board)
-            draw_board(board, gameDisplay)
+            draw_board(board, screen)
             pygame.display.update()
             player_turn = True
 
@@ -43,12 +43,12 @@ while running:
             if board[indexes[0]][indexes[1]]==1 and not is_black:
                 place_holder = board[indexes[0]][indexes[1]]
                 board[indexes[0]][indexes[1]]=0
-                draw_board(board, gameDisplay)
+                draw_board(board, screen)
                 moving = True
             if board[indexes[0]][indexes[1]]==2 and is_black:
                 place_holder = board[indexes[0]][indexes[1]]
                 board[indexes[0]][indexes[1]]=0
-                draw_board(board, gameDisplay)
+                draw_board(board, screen)
                 moving = True
 
         elif (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and moving and player_turn:
@@ -60,7 +60,7 @@ while running:
                     place_holder = 0
                     jumping_indexes = valid[1]
                     board[jumping_indexes[0]][jumping_indexes[1]]=0
-                    draw_board(board, gameDisplay)
+                    draw_board(board, screen)
                     pygame.display.update()
                     moving = False
                     player_turn = False
@@ -68,21 +68,21 @@ while running:
                 if valid:
                     board[moving_indexes[0]][moving_indexes[1]]=place_holder
                     place_holder = 0
-                    draw_board(board, gameDisplay)
+                    draw_board(board, screen)
                     pygame.display.update()
                     moving = False
                     player_turn = False
                 else:
                     board[indexes[0]][indexes[1]]=place_holder
-                    draw_board(board, gameDisplay)
+                    draw_board(board, screen)
                     pygame.display.update()
                     moving = False
 
     if moving == True:
         x,y = pygame.mouse.get_pos()
-        draw_board(board, gameDisplay)
-        if place_holder == 1: gameDisplay.blit(red_translucent, tuple(map(lambda x: x-50,pygame.mouse.get_pos())))
-        else: gameDisplay.blit(black_translucent, tuple(map(lambda x: x-50,pygame.mouse.get_pos())))
+        draw_board(board, screen)
+        if place_holder == 1: screen.blit(red_translucent, tuple(map(lambda x: x-50,pygame.mouse.get_pos())))
+        else: screen.blit(black_translucent, tuple(map(lambda x: x-50,pygame.mouse.get_pos())))
         clock.tick(60)
         pygame.display.update()
 #end of main loop

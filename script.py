@@ -42,14 +42,14 @@ def make_board(is_black=True):
                 [1, 0, 1, 0, 1, 0, 1, 0])
 
 
-def draw_board(board, gameDisplay):
-    gameDisplay.blit(boardImage, [0, 0])
+def draw_board(board, screen):
+    screen.blit(boardImage, [0, 0])
     for i in range(8):
         for j in range(8):
             if board[i][j] == 1:
-                gameDisplay.blit(red, coordinates[i][j])
+                screen.blit(red, coordinates[i][j])
             elif board[i][j] == 2:
-                gameDisplay.blit(black, coordinates[i][j])
+                screen.blit(black, coordinates[i][j])
 
 def where_clicked(board, x, y):
     x = x-(x%100)
