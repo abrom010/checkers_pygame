@@ -12,10 +12,12 @@ class ai:
         self.board = board
         piece_value = self.piece_value
 
+        iter = range(8)
+        rev_iter = reversed(range(8))
         def attack_right():
             if randint(0,1)==0:
-                for i in range(8):
-                    for j in range(8):
+                for i in iter:
+                    for j in iter:
                         if i < 6 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i+1][j+1] == get_piece(self.is_black) and\
@@ -25,8 +27,8 @@ class ai:
                                 self.board[i][j] = 0
                                 return self.board
             else:
-                for i in reversed(range(8)):
-                    for j in reversed(range(8)):
+                for i in rev_iter:
+                    for j in rev_iter:
                         if i < 6 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i+1][j+1] == get_piece(self.is_black) and\
@@ -40,8 +42,8 @@ class ai:
 
         def attack_left():
             if randint(0,1)==0:
-                for i in range(8):
-                    for j in range(8):
+                for i in iter:
+                    for j in iter:
                         if i < 6 and j > 2:
                             if self.board[i][j] == piece_value and\
                             self.board[i+1][j-1] == get_piece(self.is_black) and\
@@ -51,8 +53,8 @@ class ai:
                                 self.board[i][j] = 0
                                 return self.board
             else:
-                for i in reversed(range(8)):
-                    for j in reversed(range(8)):
+                for i in rev_iter:
+                    for j in rev_iter:
                         if i < 6 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i+1][j+1] == get_piece(self.is_black) and\
@@ -65,8 +67,8 @@ class ai:
 
         def move_right_defense():
             if randint(0,1)==0:
-                for i in range(8):
-                    for j in range(8):
+                for i in iter:
+                    for j in iter:
                         if i > 1 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i-1][j+1] == 0 and\
@@ -75,8 +77,8 @@ class ai:
                                 self.board[i-2][j+2] = 0
                                 return self.board
             else:
-                for i in reversed(range(8)):
-                    for j in reversed(range(8)):
+                for i in rev_iter:
+                    for j in rev_iter:
                         if i > 1 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i-1][j+1] == 0 and\
@@ -88,8 +90,8 @@ class ai:
 
         def move_left_defense():
             if randint(0,1)==0:
-                for i in range(8):
-                    for j in range(8):
+                for i in iter:
+                    for j in iter:
                         if i < 6 and j < 6 and j>1:
                             if self.board[i][j] == piece_value and\
                             self.board[i-1][j-1] == 0 and\
@@ -98,8 +100,8 @@ class ai:
                                 self.board[i-2][j-2] = 0
                                 return self.board
             else:
-                for i in reversed(range(8)):
-                    for j in reversed(range(8)):
+                for i in rev_iter:
+                    for j in rev_iter:
                         if i < 6 and j < 6 and j>1:
                             if self.board[i][j] == piece_value and\
                             self.board[i-1][j-1] == 0 and\
@@ -111,8 +113,8 @@ class ai:
 
         def move_right_offense():
             if randint(0,1)==0:
-                for i in range(8):
-                    for j in range(8):
+                for i in iter:
+                    for j in iter:
                         if i < 7 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i+1][j+1] == 0:
@@ -120,8 +122,8 @@ class ai:
                                 self.board[i][j]=0
                                 return self.board
             else:
-                for i in reversed(range(8)):
-                    for j in reversed(range(8)):
+                for i in rev_iter:
+                    for j in rev_iter:
                         if i < 7 and j < 6:
                             if self.board[i][j] == piece_value and\
                             self.board[i+1][j+1] == 0:
@@ -131,8 +133,8 @@ class ai:
             return None
 
         def move_left_offense():
-            for i in range(8):
-                for j in range(8):
+            for i in iter:
+                for j in iter:
                     if i < 7 and j > 2:
                         if self.board[i][j] == piece_value and\
                         self.board[i+1][j-1] == 0:
